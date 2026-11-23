@@ -1,2 +1,58 @@
 # miniature-poster-studio
-微缩创意摄影商业海报风格克隆与生成工作台（WorkBuddy Skill）— Miniature creative advertising poster style-clone studio, validated through 15+ real iterations
+
+> 微缩创意摄影商业海报风格克隆与生成工作台（WorkBuddy Skill）
+
+将参考海报的风格要素按**六维框架**提炼成结构化分析，再用 ImageGen 把指定主体图合成为同风格"微缩创意海报"（田中达也 Miniature Calendar 式），并支持成品迭代修改。本 skill 经 **15+ 次实战迭代**验证，沉淀了完整的 prompt 配方库与已知失败模式对策。成功成品样例见 `assets/validated-example.png`（随本地技能包分发，GitHub 仓库不含二进制资源）。
+
+## ✨ 特性
+
+- **六维风格分析框架**：标题字体与占比 / 图文层次 / 点缀元素 / 配色方案 / 版式结构 / 整体气质
+- **设计感标题配方库**（7 种，全部实战验证）：
+  - 错落混排 · 空心描边字 · 竖排印章风
+  - 手写感斜向流动（统一毛笔手写体 + 大小参差 + 丝带钤印）
+  - 场景几何呼应式（标题沿棋盘格对角线"阶梯下落"）
+  - 左缘竖排呼应塔形（竖排单列呼应垂直主体）
+- **微缩叙事动作库**：按主体类型（食物/饮品/农产品/物品）匹配小人偶动作，让"巨大 × 渺小"的反差构成幽默故事线
+- **四角信息灵活配比**：留白充足时四角配齐；构图饱满时自动只保底部两角
+- **已知失败模式对策**：品牌词串词规避（两轮策略）、手写体复杂汉字易错、深底配色可见性、右下水印区避让——全部来自实测教训
+
+## 📦 结构
+
+```
+miniature-poster-studio/
+├── SKILL.md                      # 主流程：触发 → 素材区分 → 六维分析 → 生成 → 校验 → 迭代
+├── references/
+│   └── prompt-recipes.md         # Prompt 模板与配方库（首次模板/迭代模板/标题配方/四角配方/注脚库/动作库）
+├── assets/
+│   └── validated-example.png     # 实战验证通过的成功成品样例（可作版式参照）
+└── README.md
+```
+
+## 🚀 使用
+
+安装到 WorkBuddy 用户级技能目录：
+
+```bash
+git clone https://github.com/haomiaomou-cmd/skills.git
+cp -r skills/miniature-poster-studio ~/.workbuddy/skills/
+```
+
+> 注：GitHub 仓库因体积原因不含二进制示例图 `assets/validated-example.png`；该资源为可选的版式参照，缺失时按 SKILL.md 的风格基线与配方库描述生成即可，不影响主流程。
+
+安装后在对话中说：
+
+- "帮我克隆这几张微缩海报风格并生成同款"（附参考海报 + 主体图）
+- "把这张海报的标题改得更有设计感"
+- "补充/删减四角信息"
+
+## 🔄 核心工作流
+
+1. **素材区分**：参考海报（提炼风格）vs 主体图（新海报核心，保真不变形）
+2. **六维分析**：先输出结构化风格总结，再生成
+3. **两轮生成策略**：首轮主体 + 标题 + 底部角标（顶部两角留空防串词）→ 二轮单独加入品牌与注脚
+4. **迭代模板**：`Keep this poster exactly as it is: [...]. ONLY ONE CHANGE: ...`，相关改动可合并（≤2 个/轮）
+5. **校验清单**：主体保真 / 小人动作 / 全文案逐字核对 / 四角就位 / 标题设计感
+
+## 📄 License
+
+MIT
